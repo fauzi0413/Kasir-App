@@ -28,7 +28,7 @@ export default class TotalBayar extends Component {
         return (
         <div className='fixed-bottom'>
             <Row>
-                <Col md={{ span:3, offset: 9 }} className="px-4">
+                <Col md={{ span:3, offset: 9 }} className="px-4" style={{ backgroundColor:'white' }}>
                     <h5>Total Harga : <strong style={{ float:'right' }} className='me-2'>Rp. {numberWithCommas(totalBayar)}</strong></h5>
                     <Button 
                         variant='primary'
