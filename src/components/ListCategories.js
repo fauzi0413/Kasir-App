@@ -40,7 +40,7 @@ class ListCategories extends Component {
         const {categories} = this.state
         const {changeCategory, categoryYangDipilih} = this.props
         return (
-            <Col md={2} mt="2">
+            <Col md={2} className='d-sm-none d-lg-block x-small' mt="2">
                 <h4><b>Daftar Kategori</b></h4>
                 <hr/>
                 <ListGroup>

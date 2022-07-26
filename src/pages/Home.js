@@ -27,7 +27,25 @@ class Home extends Component {
         console.log(error);
         })
 
-    axios
+    this.getListKeranjang();
+    }
+
+    // componentDidUpdate(prevState){
+    //     if(this.state.keranjangs !== prevState.keranjangs) {
+    //         axios
+    //         .get(API_URL+"keranjangs")
+    //         .then(res => {
+    //             const keranjangs = res.data;
+    //             this.setState({ keranjangs });
+    //         })
+    //         .catch(error=>{
+    //             console.log(error);
+    //         })
+    //     }
+    // }
+
+    getListKeranjang = () => {
+        axios
         .get(API_URL+"keranjangs")
         .then(res => {
         const keranjangs = res.data;
@@ -36,20 +54,6 @@ class Home extends Component {
         .catch(error=>{
         console.log(error);
         })
-    }
-
-    componentDidUpdate(prevState){
-    if(this.state.keranjangs !== prevState.keranjangs) {
-        axios
-        .get(API_URL+"keranjangs")
-        .then(res => {
-            const keranjangs = res.data;
-            this.setState({ keranjangs });
-        })
-        .catch(error=>{
-            console.log(error);
-        })
-    }
     }
 
     changeCategory = (value) => {
@@ -86,6 +90,7 @@ class Home extends Component {
             axios
             .post(API_URL+"keranjangs", keranjang)
             .then(res => {
+                this.getListKeranjang();
                 swal({
                 title: "Success!",
                 text: keranjang.product.nama+" Sukses Masuk Keranjang ",
@@ -134,21 +139,22 @@ class Home extends Component {
             <div className='mt-3'>
                 <Container fluid>
                 <Row>
+                    {/* <Hasil keranjangs={keranjangs} {...this.props}/> */}
                     <ListCategories changeCategory={this.changeCategory} categoryYangDipilih={categoryYangDipilih}/>
                     <Col>
-                    <h4><b>Daftar Produk</b></h4>
-                    <hr/>
-                    <Row>
-                        {menus && menus.map((menu) => (
-                        <Menus 
-                            key={menu.id}
-                            menu={menu}
-                            masukKeranjang={this.masukKeranjang}
-                        />
-                        ))}
-                    </Row>
+                        <h4 className='mt-1'><b>Daftar Produk</b></h4>
+                        <hr/>
+                        <Row className='overflow-auto menu'>
+                            {menus && menus.map((menu) => (
+                            <Menus 
+                                key={menu.id}
+                                menu={menu}
+                                masukKeranjang={this.masukKeranjang}
+                            />
+                            ))}
+                        </Row>
                     </Col>
-                    <Hasil keranjangs={keranjangs} {...this.props}/>
+                    <Hasil className='' keranjangs={keranjangs} {...this.props} getListKeranjang={this.getListKeranjang}/>
                 </Row>
                 </Container>
             </div>

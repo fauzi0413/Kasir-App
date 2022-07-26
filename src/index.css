@@ -19,6 +19,37 @@ body {
   border: none;
 }
 
+.hr{
+  color: white;
+  margin: 0;
+  /* height: 10px; */
+  border: 1px solid white;
+}
+
+@media only screen and (max-height:1000px){
+  .hasil{
+    height: 380px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .menu{
+    height: 70vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+@media only screen and (min-height:576px){
+  .x-small{
+    display: none;
+  }
+}
+
+.overflow-auto::-webkit-scrollbar{
+  display: none !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
